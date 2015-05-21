@@ -1,0 +1,25 @@
+{
+  "name": "ex5",
+  "version": "0.1.0",
+  "authors": [
+    "Mike Green <mike.green@stgconsulting.com>"
+  ],
+  "description": "test bower init",
+  "main": "gak.js",
+  "keywords": [
+    "howdy"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.4",
+    "angular": "~1.3.15",
+    "underscore": "~1.8.3"
+  }
+}
