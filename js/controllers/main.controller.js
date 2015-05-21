@@ -4,7 +4,7 @@
 		.module("app")
 		.controller("MainController", MainController);
 	
-	function MainController( notificationService, modalService) {
+	function MainController(notificationService, modalService) {
 
 		var vm = this;
 		angular.extend(vm, {
