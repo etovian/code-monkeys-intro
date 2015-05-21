@@ -53,7 +53,8 @@
 		<div class="message-container">
 			<div 
 				data-ng-repeat="n in main.getActiveNotifications() track by $index"
-				class="shadow alert" data-ng-class="main.getNotificationClass(n)">
+				class="shadow alert slideInRight enter-slideInRight exit-slideOutRight speed-700 stagger-100" 
+				data-ng-class="main.getNotificationClass(n)">
 				<span
 					data-ng-click="main.removeNotification(n);" 
 					class="glyphicon glyphicon-remove pull-right"></span>
