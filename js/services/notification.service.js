@@ -9,10 +9,10 @@ function NotificationService($timeout) {
 	
 	return {
 		NOTIFICATION_TYPES: {
-			INFO: "INFO",
-			SUCCESS: "SUCCESS",
-			WARNING: "WARNING",
-			DANGER: "DANGER"
+			INFO: "info",
+			SUCCESS: "success",
+			WARNING: "warning",
+			DANGER: "danger"
 		},
 		add: function(notification) {
 			var me = this;
@@ -41,30 +41,6 @@ function NotificationService($timeout) {
 		},
 		getInactiveNotifications: function() {
 			return inactiveNotifications;
-		},
-		getNotificationClass: function(notification) {
-			var cssClass = "";
-			if(notification) {
-				switch(notification.type) {
-					case this.NOTIFICATION_TYPES.INFO:
-						cssClass = "alert-info";
-						break;
-					case this.NOTIFICATION_TYPES.SUCCESS:
-						cssClass = "alert-success";
-						break;
-					case this.NOTIFICATION_TYPES.WARNING:
-						cssClass = "alert-warning";
-						break;
-					case this.NOTIFICATION_TYPES.DANGER:
-						cssClass = "alert-danger";
-						break;
-					default:
-						cssClass = "alert-info";
-						break;
-				}				
-			}
-			
-			return cssClass;
 		}
 	};
 }

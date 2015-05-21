@@ -30,9 +30,6 @@
 			},
 			getInactiveNotifications: function() {
 				return notificationService.getInactiveNotifications();
-			},
-			getNotificationClass: function(notification) {
-				return notificationService.getNotificationClass(notification);
 			}
 		});
 
@@ -42,6 +39,7 @@
 			type: notificationService.NOTIFICATION_TYPES.INFO,
 			pinned: true
 		});
+
 	}
 	
 })();

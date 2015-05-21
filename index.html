@@ -8,6 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css"/>
 	<link rel="stylesheet" type="text/css" href="js/lib/bootstrap/dist/css/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="js/lib/nz-animate/dist/nzAnimate.min.css"/>
+	<link rel="stylesheet" type="text/css" href="js/lib/angular-bootstrap/ui-bootstrap-csp.css"/>
 	
 <!-- 	bower components -->
 	<script type="text/javascript" src="js/lib/jquery/dist/jquery.min.js"></script>
@@ -17,6 +18,8 @@
 	<script type="text/javascript" src="js/lib/angular-route/angular-route.min.js"></script>
 	<script type="text/javascript" src="js/lib/angular-route/angular-route.min.js"></script>
 	<script type="text/javascript" src="js/lib/underscore/underscore-min.js"></script>
+	<script type="text/javascript" src="js/lib/angular-bootstrap/ui-bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/lib/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 	
 <!-- 	app -->
 	<script type="text/javascript" src="js/app.js"></script>
@@ -51,7 +54,16 @@
 		</nav>
 	
 		<div class="message-container">
-			<div 
+			<alert
+				ng-repeat="n in main.getActiveNotifications() track by $index"
+				type="{{ n.type }}"
+				close="main.removeNotification(n)"
+				class="shadow alert slideInRight enter-slideInRight exit-slideOutRight speed-700 stagger-100">
+				<h4>{{ n.title }}</h4>
+				<p>{{ n.text }}</p>
+				<p ng-repeat="line in n.lines">{{ line }}</p>
+			</alert>
+			<!-- <div 
 				data-ng-repeat="n in main.getActiveNotifications() track by $index"
 				class="shadow alert slideInRight enter-slideInRight exit-slideOutRight speed-700 stagger-100" 
 				data-ng-class="main.getNotificationClass(n)">
@@ -61,7 +73,7 @@
 				<h4>{{ n.title }}</h4>
 				<p>{{ n.text }}</p>
 				<p ng-repeat="line in n.lines">{{ line }}</p>
-			</div>
+			</div> -->
 		</div>
 	
 	</div>
