@@ -1,1 +1,31 @@
-Hwody!
+<tabset>
+	<tab>
+		<tab-heading>
+			<h4>Characters</h4>
+		</tab-heading>
+		<div class="container-fluid">
+			<div
+				ng-repeat="c in mg.getCharacters()"
+				class="row">
+				<div class="tile shadow">
+					<div class="row">
+						<div class="col-xs-3">{{ c.name }}</div>
+						<div class="col-xs-3">
+							<img 
+								ng-src="{{ c.thumbnail.path }}.{{ c.thumbnail.extension }}"
+								style="width:150px"/>
+						</div>
+						<div class="col-xs-3"></div>		
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</tab>
+	<tab>
+		<tab-heading>
+			<h4>Tab Two</h4>
+		</tab-heading>
+		<div>I am tab two.</div>
+	</tab>
+</tabset>
