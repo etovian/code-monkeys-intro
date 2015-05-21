@@ -40,7 +40,7 @@
 			title: "Welcome, Code Monkeys!",
 			text: "Two men enter!  One man leaves!  Oh, wait.  That's the Thunderdome.",
 			type: notificationService.NOTIFICATION_TYPES.INFO,
-			pinned: false
+			pinned: true
 		});
 	}
 	
