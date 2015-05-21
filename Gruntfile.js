@@ -1,50 +1,43 @@
 "use strict";
 
-var fs = require("fs");
-
 module.exports = function(grunt) {
 
-	var directories = [
-		"css",
-		"images",
-		"js",
-		"js/controllers",
-		"js/directives",
-		"js/services",
-		"logs",
-		"views",
-		"views/directives",
-		"views/templates"
-	];
-
 	grunt.initConfig({
-		createWebProjectFolders: {
+		pkg: grunt.file.readJSON("package.json"),
+		jshint: {
 			options: {
-				directories: directories
+				force: false, //force pass on errors
+				"-W069": false, //ignore specified errors
+				"-W004": false,
+				ignores: [""], //ignore files (csv strings with relative file path)
+				reporterOutput: "logs/jshint.txt"
+			},
+			files: ["js/*/*.js"]
+		},
+		htmlhint: {
+			templates: {
+				options: {
+					"attr-lower-case": true,
+					"attr-value-not-empty": true,
+					"tag-pair": true,
+					"attr-lowercase": true,
+					"tagname-lowercase": true,
+					"attr-no-duplication": true,
+					"tag-self-close": true,
+					"spec-char-escape": true,
+					"id-unique": true,
+					"src-not-empty": true
+				},
+				src: [
+					"index.html",
+					"views/*/*.html"
+				]
 			}
 		}
 	});
 
-	grunt.registerTask("default", ["createWebProjectFolders"]);
+	grunt.loadNpmTasks("grunt-contrib-jshint");
+	grunt.loadNpmTasks("grunt-htmlhint")
 
-	grunt.registerTask("createWebProjectFolders", "Creates folder structure for web project", function(debug) {
-		
-		var isDebug = this.args.length !== 0 && debug !== undefined;
-		var options = this.options({
-			directories: []
-		});
-
-		if(isDebug) {
-			grunt.log.writeflags(options, "Options");
-		}
-
-		for(var i = 0; i < options.directories.length; i++) {
-			var directory = options.directories[i];
-			grunt.file.mkdir(directory);
-			if(isDebug) {
-				grunt.log.writeln("wrote directory ", directory);
-			}
-		}
-	});
-
+	grunt.registerTask("default", ["jshint", "htmlhint"]);
 };
