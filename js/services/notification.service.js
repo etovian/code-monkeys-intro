@@ -18,7 +18,7 @@ function NotificationService($timeout) {
 			var me = this;
 			activeNotifications.push(notification);
 			if(!notification.pinned) {
-				var displaySeconds = (notification.displaySeconds || 5) * 1000;
+				var displaySeconds = (notification.displaySeconds || 10) * 1000;
 				$timeout(function() {
 					me.remove(notification);
 				}, displaySeconds);	
