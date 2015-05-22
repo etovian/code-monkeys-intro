@@ -22,6 +22,11 @@ function MarvelService($q, $http, $log) {
 		count: 0,
 		results: []
 	};
+
+	var pagination = {
+		index: 0,
+		size: 25
+	};
 	
 	return {
 		getCharacters: function() {
@@ -41,17 +46,24 @@ function MarvelService($q, $http, $log) {
 		},
 		getURL: function(type) {
 
-			//http://gateway.marvel.com/v1/public/characters?apikey=1b11a7c699f3f7d7e8a6ab6e8b6281b9&hash=0c61bf670ab2e189894495fad50543be&ts=1432240599418
 			var timestamp = this.getTimestamp();
+
 			var url = 
 				"http://gateway.marvel.com/v1/public/" + 
 				type +
 				"?apikey=" + PUBLIC_KEY +
 				"&hash=" + this.getHash(timestamp) +
 				"&ts=" + timestamp +
-				"&limit=100";
+				"&offset=" + (pagination.index * pagination.size) +
+				"&limit=" + pagination.size;
 
 			return url;
+		},
+		setPageIndex: function(index) {
+			pagination.index = index;
+		},		
+		pageData: function(pageNumer, data) {
+
 		},
 		requestCharacters: function() {
 			var deferred = $q.defer();

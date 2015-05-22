@@ -8,6 +8,7 @@
 
 		var vm = this;
 		angular.extend(vm, {
+			searchFilter: "",
 			getCharacters: function() {
 				return marvelService.getCharacters();
 			}

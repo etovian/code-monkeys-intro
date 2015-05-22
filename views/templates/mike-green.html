@@ -3,22 +3,51 @@
 		<tab-heading>
 			<h4>Characters</h4>
 		</tab-heading>
+
 		<div class="container-fluid">
-			<div
-				ng-repeat="c in mg.getCharacters()"
-				class="row">
-				<div class="tile shadow">
-					<div class="row">
-						<div class="col-xs-3">{{ c.name }}</div>
-						<div class="col-xs-3">
-							<img 
-								ng-src="{{ c.thumbnail.path }}.{{ c.thumbnail.extension }}"
-								style="width:150px"/>
+			<hr/>
+			<div class="row">
+				<div class="col-xs-12">
+					<form class="form-inline">
+						<div class="form-group">
+							<div class="input-group">
+								<input class="form-control" type="text" placeholder="Search Text"/>
+								<span class="input-group-btn">
+									<button class="btn btn-default">Search</button>
+								</span>
+							</div>
+							<button class="btn btn-default">Previous</button>
+							<button class="btn btn-default">Next</button>
 						</div>
-						<div class="col-xs-3"></div>		
-					</div>
+					</form>	
 				</div>
-				
+			</div>
+			<hr/>
+			<div class="row">
+				<div class="col-xs-12">
+					<div
+						ng-repeat="c in mg.getCharacters()">
+						<div class="character-tile shadow">
+							<div class="row">
+								<div class="col-xs-12">
+									<label class="truncate">{{ c.name }}</label>
+									
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-12">
+									<img 
+										ng-src="{{ c.thumbnail.path }}.{{ c.thumbnail.extension }}"
+										class="img-thumbnail"
+										style="width:150px"/>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-12"></div>		
+							</div>
+						</div>
+					</div>					
+				</div>
 			</div>
 		</div>
 	</tab>
