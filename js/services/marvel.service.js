@@ -29,8 +29,14 @@ function MarvelService($q, $http, $log) {
 	};
 	
 	return {
+		getCharacterData: function() {
+			return characterData;
+		},
 		getCharacters: function() {
 			return characterData.results;
+		},
+		getComicData: function() {
+			return comicData;
 		},
 		getComics: function() {
 			return comicData.results;
@@ -44,7 +50,7 @@ function MarvelService($q, $http, $log) {
 			var r = hash.toString(CryptoJS.enc.Hex);
 			return r;
 		},
-		getURL: function(type) {
+		getURL: function(type, searchFilter) {
 
 			var timestamp = this.getTimestamp();
 
@@ -57,6 +63,16 @@ function MarvelService($q, $http, $log) {
 				"&offset=" + (pagination.index * pagination.size) +
 				"&limit=" + pagination.size;
 
+			if(searchFilter) {
+				switch(type) {
+					case "characters":
+						url += "&nameStartsWith=" + searchFilter;
+						break;
+					case "comics":
+						break;
+				}
+			}
+
 			return url;
 		},
 		setPageIndex: function(index) {
@@ -65,10 +81,10 @@ function MarvelService($q, $http, $log) {
 		pageData: function(pageNumer, data) {
 
 		},
-		requestCharacters: function() {
+		requestCharacters: function(searchFilter) {
 			var deferred = $q.defer();
 			var self = this;
-			$http.get(this.getURL("characters"))
+			$http.get(this.getURL("characters", searchFilter))
 				.success(function(response, status, headers, config) {
 					self.setCharacterData(response.data);
 				}).error(function(data, status, headers, config) {

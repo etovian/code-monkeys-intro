@@ -11,9 +11,15 @@
 					<form class="form-inline">
 						<div class="form-group">
 							<div class="input-group">
-								<input class="form-control" type="text" placeholder="Search Text"/>
+								<input 
+									ng-model="mg.searchFilter"
+									class="form-control" 
+									type="text" 
+									placeholder="Search Text"/>
 								<span class="input-group-btn">
-									<button class="btn btn-default">Search</button>
+									<button
+										ng-click="mg.requestCharacters();" 
+										class="btn btn-default">Search Name</button>
 								</span>
 							</div>
 							<button class="btn btn-default">Previous</button>

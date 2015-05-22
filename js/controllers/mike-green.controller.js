@@ -8,14 +8,19 @@
 
 		var vm = this;
 		angular.extend(vm, {
+			
 			searchFilter: "",
+
 			getCharacters: function() {
 				return marvelService.getCharacters();
+			},
+			requestCharacters: function() {
+				marvelService.requestCharacters(vm.searchFilter);				
 			}
 		});
 
-		marvelService.requestCharacters();
-		marvelService.requestComics();
+		// marvelService.requestCharacters();
+		// marvelService.requestComics();
 
 		notificationService.add({
 			title: "Welcome to Mike Green's View!",
