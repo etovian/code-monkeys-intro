@@ -2,7 +2,7 @@ angular
 	.module("app")
 	.factory("marvelService", MarvelService);
 
-function MarvelService($q, $http, $log) {
+function MarvelService($q, $http, $log, notificationService) {
 	
 	var PRIVATE_KEY = "bd8fd2dce87b3f368fd96048d42fbfe2d7d1d401";
 	var PUBLIC_KEY = "1b11a7c699f3f7d7e8a6ab6e8b6281b9";
@@ -84,11 +84,20 @@ function MarvelService($q, $http, $log) {
 		requestCharacters: function(searchFilter) {
 			var deferred = $q.defer();
 			var self = this;
+			var n = {
+				title: "Requesting Data",
+				text: "This might take a while...",
+				type: notificationService.NOTIFICATION_TYPES.INFO,
+				pinned: true
+			};
+			notificationService.add(n);
 			$http.get(this.getURL("characters", searchFilter))
 				.success(function(response, status, headers, config) {
 					self.setCharacterData(response.data);
+					notificationService.remove(n);
 				}).error(function(data, status, headers, config) {
 					$log.warn(data, status, headers(), config);
+					notificationService.remove(n);
 					notificationService.addError("Could not load data for " + characters);
 				});
 
