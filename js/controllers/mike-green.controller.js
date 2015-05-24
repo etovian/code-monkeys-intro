@@ -40,9 +40,6 @@
 			}
 		});
 
-		// marvelService.requestCharacters();
-		// marvelService.requestComics();
-
 		notificationService.add({
 			title: "Welcome to Mike Green's View!",
 			text: "There will be bugs.  You have been warned!",
