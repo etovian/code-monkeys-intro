@@ -4,12 +4,26 @@ angular
 
 function MarvelService($q, $http, $log, notificationService) {
 	
+	var MARVEL_URL = "http://gateway.marvel.com/v1/public/";
+	var POLLING_DATA_NOTIFICATION = {
+		title: "Requesting Data",
+		text: "This might take a while...",
+		type: notificationService.NOTIFICATION_TYPES.INFO,
+		pinned: true
+	};
 	var PRIVATE_KEY = "bd8fd2dce87b3f368fd96048d42fbfe2d7d1d401";
 	var PUBLIC_KEY = "1b11a7c699f3f7d7e8a6ab6e8b6281b9";
+	var RECORD_LIMIT = 100;
+	var RECORD_LIMIT_WARNING = {
+		title: "Maximum Records Displayed",
+		text: "The maximum number of records (" + RECORD_LIMIT + ") is displayed.  " +
+			"Try narrowing your search criteria.",
+		type: notificationService.NOTIFICATION_TYPES.DANGER
+	};
 
 	var characterData = {
 		offset: 0,
-		limit: 10,
+		limit: RECORD_LIMIT,
 		total: 0,
 		count: 0,
 		results: []
@@ -17,15 +31,10 @@ function MarvelService($q, $http, $log, notificationService) {
 
 	var comicData = {
 		offset: 0,
-		limit: 10,
+		limit: RECORD_LIMIT,
 		total: 0,
 		count: 0,
 		results: []
-	};
-
-	var pagination = {
-		index: 0,
-		size: 25
 	};
 	
 	return {
@@ -50,55 +59,35 @@ function MarvelService($q, $http, $log, notificationService) {
 			var r = hash.toString(CryptoJS.enc.Hex);
 			return r;
 		},
-		getURL: function(type, searchFilter) {
-
-			var timestamp = this.getTimestamp();
-
-			var url = 
-				"http://gateway.marvel.com/v1/public/" + 
-				type +
-				"?apikey=" + PUBLIC_KEY +
-				"&hash=" + this.getHash(timestamp) +
-				"&ts=" + timestamp +
-				"&offset=" + (pagination.index * pagination.size) +
-				"&limit=" + pagination.size;
-
-			if(searchFilter) {
-				switch(type) {
-					case "characters":
-						url += "&nameStartsWith=" + searchFilter;
-						break;
-					case "comics":
-						break;
-				}
-			}
-
-			return url;
-		},
-		setPageIndex: function(index) {
-			pagination.index = index;
-		},		
-		pageData: function(pageNumer, data) {
-
-		},
-		requestCharacters: function(searchFilter) {
+		requestCharacters: function(searchFilter, pagination) {
 			var deferred = $q.defer();
 			var self = this;
-			var n = {
-				title: "Requesting Data",
-				text: "This might take a while...",
-				type: notificationService.NOTIFICATION_TYPES.INFO,
-				pinned: true
+
+			var timestamp = this.getTimestamp();
+			var params = {
+				apikey: PUBLIC_KEY,
+				hash: this.getHash(timestamp),
+				ts: timestamp,
+				offset: (pagination.itemsPerPage * (pagination.currentIndex - 1)),
+				limit: RECORD_LIMIT
 			};
-			notificationService.add(n);
-			$http.get(this.getURL("characters", searchFilter))
+
+			if(searchFilter) {
+				params.nameStartsWith = searchFilter;
+			}
+
+			notificationService.add(POLLING_DATA_NOTIFICATION);
+			$http.get(MARVEL_URL + "characters", { params: params })
 				.success(function(response, status, headers, config) {
 					self.setCharacterData(response.data);
-					notificationService.remove(n);
+					// self.showRecordLimitWarning(characterData);
+					deferred.resolve(response.data);
 				}).error(function(data, status, headers, config) {
 					$log.warn(data, status, headers(), config);
-					notificationService.remove(n);
-					notificationService.addError("Could not load data for " + characters);
+					notificationService.addError("Could not load data for characters.");
+					deferred.reject();
+				}).finally(function() {
+					notificationService.remove(POLLING_DATA_NOTIFICATION);
 				});
 
 			return deferred.promise;
@@ -121,6 +110,11 @@ function MarvelService($q, $http, $log, notificationService) {
 		},
 		setComicData: function(data) {
 			comicData = data;
+		},
+		showRecordLimitWarning: function(data) {
+			if(data.total > data.limit) {
+				notificationService.add(RECORD_LIMIT_WARNING);
+			}
 		}
 	};
 }

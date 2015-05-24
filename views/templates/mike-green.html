@@ -22,11 +22,21 @@
 										class="btn btn-default">Search Name</button>
 								</span>
 							</div>
-							<button class="btn btn-default">Previous</button>
-							<button class="btn btn-default">Next</button>
-							<p>{{ mg.getSummary() }}</p>
+							<span ng-if="mg.isPolling" class="glyphicon glyphicon-cloud-download"></span>
+							<p ng-if="mg.getCharacterData().total > 0">{{ mg.getSummary() }}</p>
 						</div>
 					</form>	
+					<pagination 
+						ng-if="mg.getCharacterData().total > 0"
+						ng-change="mg.requestCharacters();"
+						items-per-page="mg.pagination.itemsPerPage"
+						total-items="mg.getCharacterData().total" 
+						ng-model="mg.pagination.currentIndex" 
+						max-size="mg.pagination.maxSize" 
+						class="pagination-sm" 
+						boundary-links="true" 
+						rotate="true">
+					</pagination>
 				</div>
 			</div>
 			<hr/>

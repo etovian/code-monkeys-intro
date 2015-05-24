@@ -32,7 +32,7 @@ function NotificationService($timeout) {
 			this.add({
 				title: "Error",
 				text: text,
-				type: "DANGER",
+				type: this.NOTIFICATION_TYPES.DANGER,
 				pinned: true
 			});
 		},
