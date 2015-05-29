@@ -44,25 +44,7 @@
 				<div class="col-xs-12">
 					<div
 						ng-repeat="c in mg.getCharacters()">
-						<div class="character-tile shadow">
-							<div class="row">
-								<div class="col-xs-12">
-									<label class="truncate">{{ c.name }}</label>
-									
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-xs-12">
-									<img 
-										ng-src="{{ c.thumbnail.path }}.{{ c.thumbnail.extension }}"
-										class="img-thumbnail"
-										style="width:150px"/>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-xs-12"></div>		
-							</div>
-						</div>
+						<mg-character-tile mg-character="c"></mg-character-tile>
 					</div>					
 				</div>
 			</div>
