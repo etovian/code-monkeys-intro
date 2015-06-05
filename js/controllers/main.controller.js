@@ -3,7 +3,7 @@
 	angular
 		.module("app")
 		.controller("MainController", MainController);
-	
+
 	function MainController(notificationService, modalService) {
 
 		var vm = this;
@@ -33,5 +33,5 @@
 			}
 		});
 	}
-	
+
 })();

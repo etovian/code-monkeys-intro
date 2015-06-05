@@ -3,12 +3,12 @@
 	angular
 		.module("app")
 		.controller("MikeGreenController", MikeGreenController);
-	
+
 	function MikeGreenController(marvelService, notificationService, modalService, $log) {
 
 		var vm = this;
 		angular.extend(vm, {
-			
+
 			isPolling: false,
 			pagination: {
 				currentIndex: 1,
@@ -47,5 +47,5 @@
 			pinned: false
 		});
 	}
-	
+
 })();

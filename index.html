@@ -3,13 +3,13 @@
 <head>
 	<meta charset="UTF-8"/>
 	<title>Code Monkeys Attack!</title>
-	
+
 <!-- 	css -->
 	<link rel="stylesheet" type="text/css" href="css/main.css"/>
 	<link rel="stylesheet" type="text/css" href="js/lib/bootstrap/dist/css/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="js/lib/nz-animate/dist/nzAnimate.min.css"/>
 	<link rel="stylesheet" type="text/css" href="js/lib/angular-bootstrap/ui-bootstrap-csp.css"/>
-	
+
 <!-- 	bower components -->
 	<script type="text/javascript" src="js/lib/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="js/lib/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -20,16 +20,16 @@
 	<script type="text/javascript" src="js/lib/underscore/underscore-min.js"></script>
 	<script type="text/javascript" src="js/lib/angular-bootstrap/ui-bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/lib/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-	
+
 <!-- 	app -->
 	<script type="text/javascript" src="js/app.js"></script>
 	<script type="text/javascript" src="js/route.config.js"></script>
-	
+
 <!-- 	controllers -->
 	<script type="text/javascript" src="js/controllers/main.controller.js"></script>
 	<script type="text/javascript" src="js/controllers/home.controller.js"></script>
 	<script type="text/javascript" src="js/controllers/mike-green.controller.js"></script>
-	
+
 <!-- 	services -->
 	<script type="text/javascript" src="js/services/notification.service.js"></script>
 	<script type="text/javascript" src="js/services/modal.service.js"></script>
@@ -37,27 +37,28 @@
 
 <!-- 	cdn -->
 	<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
-	
-	
+
+
 </head>
 <body>
 
 	<div data-ng-controller="MainController as main" class="container-fluid main-content">
-	
+
 		<div class="ng-view"></div>
-		
-			
+
+
 		<nav class="navbar navbar-default navbar-fixed-bottom">
 			<div class="container-fluid">
 				<div>
 					<ul class="nav navbar-nav">
 						<li><a href="#/home">Home</a></li>
 						<li><a href="#/mike-green">Mike Green</a></li>
+						<li><a href="#/skoot">Skoot</a></li>
 					</ul>
 				</div>
 			</div>
 		</nav>
-	
+
 		<div class="message-container">
 			<alert
 				ng-repeat="n in main.getActiveNotifications() track by $index"
@@ -69,8 +70,8 @@
 				<p ng-repeat="line in n.lines">{{ line }}</p>
 			</alert>
 		</div>
-	
+
 	</div>
-	
+
 </body>
 </html>

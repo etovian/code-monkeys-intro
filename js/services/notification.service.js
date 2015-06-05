@@ -3,10 +3,10 @@ angular
 	.factory("notificationService", NotificationService);
 
 function NotificationService($timeout) {
-	
+
 	var activeNotifications = [];
 	var inactiveNotifications = [];
-	
+
 	return {
 		NOTIFICATION_TYPES: {
 			INFO: "info",
@@ -21,7 +21,7 @@ function NotificationService($timeout) {
 				var displaySeconds = (notification.displaySeconds || 10) * 1000;
 				$timeout(function() {
 					me.remove(notification);
-				}, displaySeconds);	
+				}, displaySeconds);
 			}
 		},
 		remove: function(notification) {

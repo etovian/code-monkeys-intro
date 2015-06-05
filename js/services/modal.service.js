@@ -11,7 +11,7 @@ function ModalService($log) {
 		addTemplateNPC: false,
 		inactiveNotification: false
 	};
-	
+
 	return {
 		show: function(name) {
 			this.hideAll();

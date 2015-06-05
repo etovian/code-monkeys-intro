@@ -3,7 +3,7 @@ angular
 	.factory("marvelService", MarvelService);
 
 function MarvelService($q, $http, $log, notificationService) {
-	
+
 	var MARVEL_URL = "http://gateway.marvel.com/v1/public/";
 	var POLLING_DATA_NOTIFICATION = {
 		title: "Requesting Data",
@@ -36,7 +36,7 @@ function MarvelService($q, $http, $log, notificationService) {
 		count: 0,
 		results: []
 	};
-	
+
 	return {
 		getCharacterData: function() {
 			return characterData;

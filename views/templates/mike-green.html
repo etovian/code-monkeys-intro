@@ -11,30 +11,30 @@
 					<form class="form-inline">
 						<div class="form-group">
 							<div class="input-group">
-								<input 
+								<input
 									ng-model="mg.searchFilter"
-									class="form-control" 
-									type="text" 
+									class="form-control"
+									type="text"
 									placeholder="Search Text"/>
 								<span class="input-group-btn">
 									<button
-										ng-click="mg.requestCharacters();" 
+										ng-click="mg.requestCharacters();"
 										class="btn btn-default">Search Name</button>
 								</span>
 							</div>
 							<span ng-if="mg.isPolling" class="glyphicon glyphicon-cloud-download"></span>
 							<p ng-if="mg.getCharacterData().total > 0">{{ mg.getSummary() }}</p>
 						</div>
-					</form>	
-					<pagination 
+					</form>
+					<pagination
 						ng-if="mg.getCharacterData().total > 0"
 						ng-change="mg.requestCharacters();"
 						items-per-page="mg.pagination.itemsPerPage"
-						total-items="mg.getCharacterData().total" 
-						ng-model="mg.pagination.currentIndex" 
-						max-size="mg.pagination.maxSize" 
-						class="pagination-sm" 
-						boundary-links="true" 
+						total-items="mg.getCharacterData().total"
+						ng-model="mg.pagination.currentIndex"
+						max-size="mg.pagination.maxSize"
+						class="pagination-sm"
+						boundary-links="true"
 						rotate="true">
 					</pagination>
 				</div>
@@ -48,22 +48,22 @@
 							<div class="row">
 								<div class="col-xs-12">
 									<label class="truncate">{{ c.name }}</label>
-									
+
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-xs-12">
-									<img 
+									<img
 										ng-src="{{ c.thumbnail.path }}.{{ c.thumbnail.extension }}"
 										class="img-thumbnail"
 										style="width:150px"/>
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-xs-12"></div>		
+								<div class="col-xs-12"></div>
 							</div>
 						</div>
-					</div>					
+					</div>
 				</div>
 			</div>
 		</div>

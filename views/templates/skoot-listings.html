@@ -1,0 +1,44 @@
+<div class='movies-list'>
+
+	<h2 ng-show='movies'>HERE ARE YOUR MOVIES</h2>
+
+	<ul ng-show='dvds'>
+		<h2> On DVD or Blu-Ray </h2>
+		<li ng-repeat='dvd in dvds'>
+			<img src="{{dvd.posters.thumbnail}}" class='thumbnail'>
+			<a ng-href="#/disc/{{dvd.id}}" ng-model='title'> {{dvd.title}} </a> <br />
+				<span class='synopsis'>{{dvd.synopsis}} </span>
+				<hr />
+		</li>
+	</ul>
+
+	<ul ng-show='theater'>
+		<h2> In Theaters </h2>
+		<li ng-repeat='movie in theater'>
+			<img src="{{movie.posters.thumbnail}}" class='thumbnail'>
+			<a ng-href="#/movie/{{movie.$id}}" ng-model='title'> {{movie.title}} </a> <br />
+				<span class='synopsis'>{{theater.synopsis}} </span>
+			<hr />
+		</li>
+	</ul>
+
+	<ul ng-show='coming'>
+		<h2> Coming to Theaters </h2>
+		<li ng-repeat='movie in coming'>
+			<img src="{{movie.posters.thumbnail}}" class='thumbnail'>
+			<a ng-href="#/movie/{{movie.$id}}" ='title'> {{movie.title}} </a> <br />
+				<span class='synopsis'>{{coming.synopsis}} </span>
+			<hr />
+		</li>
+	</ul>
+
+	<ul ng-show='noRelease'>
+		<h2> No Known Release Dates </h2>
+		<li ng-repeat='movie in noRelease'>
+			<img src="{{movie.posters.thumbnail}}" class='thumbnail'>
+			<a ng-href="#/movie/{{movie.$id}}" class='title'> {{movie.title}} </a> <br />
+				<span class='synopsis'>{{noRelease.synopsis}} </span>
+			<hr />
+		</li>
+	</ul>
+</div>

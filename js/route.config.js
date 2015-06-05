@@ -1,9 +1,9 @@
 (function() {
-	
+
 	angular
 		.module("app")
 		.config(config);
-	
+
 	var templatePath = "views/templates/";
 
 	function config($routeProvider) {
@@ -22,5 +22,5 @@
 				redirectTo: "/home"
 			});
 	};
-	
+
 })();
