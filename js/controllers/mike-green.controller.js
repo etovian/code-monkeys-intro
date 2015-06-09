@@ -6,6 +6,8 @@
 	
 	function MikeGreenController(marvelService, notificationService, modalService, $log) {
 
+		//TODO: remove this comment
+		
 		var vm = this;
 		angular.extend(vm, {
 			
