@@ -1,0 +1,50 @@
+<tabset>
+	<tab>
+		<tab-heading>
+			<h4>Book Lookup</h4>
+		</tab-heading>
+		<div class="container-fluid">
+                {{test}}
+            <div ng-repeat= "book in books">
+                {{book.title}}
+                {{book.author}}
+                <div>
+                    <button class="btn btn-default" ng-click="deleteBook(book)">Delete</button>
+                </div>
+            </div>
+            <div ng-show="showFilter" >
+                <input type="text" placeholder="Enter Book Title" class="form-control" ng-model="filterText" ></textarea>
+            </div>
+		</div>
+	</tab>
+	<tab>
+		<tab-heading>
+			<h4>Add/Edit Books</h4>
+		</tab-heading>
+		<div>
+            <h1>Add Book</h1>   
+            <form ng-submit="addBook()" class="form-group">
+                <input type="text" placeholder="Enter Title" class="form-control" ng-model="bookTitle">
+                <input type="text" placeholder="Enter Author" class="form-control" ng-model="authorName"/>
+                <button class="btn btn-default">Submit</button>
+            </form>	
+        </div>
+		<div>
+            <h1>Book to Edit</h1>                
+            <form>
+                <div>
+                    <label for="booklist" >Select a Book to Edit</label>
+                    <select id="booklist" class="form-control" ng-model="bookList" ng-options="book.title for book in books" onchange="bookToEdit()"></select>
+                </div>
+            </form>    
+            <form ng-show="false" ng-submit="editBook()" class="form-group">
+                <label for="title">Title</label>
+                <input id="title" type="text" placeholder="Enter Title" class="form-control" ng-model="bookTitle">
+                <label for="author">Author</label>
+                <input id="author" type="text" placeholder="Enter Author" class="form-control" ng-model="authorName"/>
+                <button class="btn btn-default">Submit</button>
+            </form>	
+
+        </div>
+	</tab>
+</tabset>

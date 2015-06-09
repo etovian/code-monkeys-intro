@@ -18,6 +18,11 @@
 				controller: "MikeGreenController",
 				controllerAs: "mg"
 			})
+			.when("/wendy-goller", {
+				templateUrl: templatePath + "wendy-goller.html",
+				controller: "WendyGollerController",
+				controllerAs: "wg"
+			})
 			.otherwise({
 				redirectTo: "/home"
 			});
