@@ -5,11 +5,12 @@ angular
 function MovieService($q, $http, $location, $log, notificationService) {
 
 
-    /* Example request URI: " https://api.themoviedb.org/3/search/multi?api_key=97a0ffa0eeb977eb2f54a537c400a31a&query=transformers " "*/
+    /* Example request URI: "  "*/
 
-  var MOVIEDB_URL = "https://api.themoviedb.org/3/";
-  var API_KEY = "api_key=97a0ffa0eeb977eb2f54a537c400a31a"
-  var SEARCH_METHOD = "search/multi?";    //
+  var ROTTENTOMS_URL = "http://api.rottentomatoes.com/api/public/v1.0/";
+  var API_KEY = ".json?apikey=dewea2dj5uhnnq45qu9rjwb5&_prettyprint=true&q="
+  var MOVIES_SEARCH_METHOD = "movies";    //
+  var LISTS_SEARCH_METHOD = "lists";    //
   var POLLING_DATA_NOTIFICATION = {
     title: 'Requesting Data',
     text: 'This is gonna take a bit...',
@@ -17,17 +18,56 @@ function MovieService($q, $http, $location, $log, notificationService) {
     pinned: true
   };
 
-  var vm = this;
 
-  vm.getInfo: function(searchTerm) {
-    var deferred = $q.defer;
+  this.getMovieData = function(searchTerm) {
+    console.log("searchTerm: ", searchTerm)
+    var deferred = $q.defer();
     $http({
       method: "JSONP",
-      url: MOVIEDB_URL + SEARCH_METHOD + API_KEY + "&query=" + searchTerm,
+      url: ROTTENTOMS_URL + MOVIES_SEARCH_METHOD + API_KEY + searchTerm,
       params: {
         callback: "JSON_CALLBACK"
       }
-    })
+    }).then(function(data) {
+      var movieData = data.data.movies;
+        console.log("movieData: ", movieData);
+
+      var onDvdArray = [];
+      var inTheaterArray = [];
+      var comingSoonArray = [];
+      var noReleaseDate = [];
+      var today = moment();
+        console.log("TODAY: ", today)
+        console.log("TODAY minus 365: ", today.subtract(365, 'days'))
+      for(var i = 0; i < movieData.length; i++) {
+        var releaseDate = movieData[i].release_dates;
+        if(!releaseDate.dvd && !releaseDate.theater) {
+          noReleaseDate.push(movieData[i]);
+        } else if(releaseDate.dvd || releaseDate.theater > today.subtract(365, 'days')) {
+          onDvdArray.push(movieData[i]);
+        } else {
+          if(moment(releaseDate.theater) > today) {
+            comingSoonArray.push(movieData[i]);
+          } else {
+            inTheaterArray.push(movieData[i]);
+          }
+        }
+      }
+
+      var moviesObject = {
+        onDvd: onDvdArray,
+        inTheater: inTheaterArray,
+        comingSoon: comingSoonArray,
+        noReleaseDate: noReleaseDate
+      };
+      console.log("moviesObject: ", moviesObject)
+
+      deferred.resolve(moviesObject);
+    }, function(error) {
+      deferred.reject(error);
+    });
+
+    return deferred.promise;
   }
 
 };

@@ -1,7 +1,7 @@
 @CHARSET "ISO-8859-1";
 
 body {
-	font-family: sans-serif; 
+	font-family: sans-serif;
 	padding: 5px;
 }
 
@@ -60,7 +60,7 @@ body {
 .shadow {
 	-webkit-box-shadow: 8px 8px 5px rgba(50, 50, 50, 0.75);
 	-moz-box-shadow:    8px 8px 5px rgba(50, 50, 50, 0.75);
-	box-shadow:         8px 8px 5px rgba(50, 50, 50, 0.75);			
+	box-shadow:         8px 8px 5px rgba(50, 50, 50, 0.75);
 }
 
 .modal-cover {

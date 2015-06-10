@@ -9,9 +9,17 @@
     var vm = this;
 
 
-      getMovieData: function() {
-        return movieService.getMovieData();
-      },
+      vm.getMovieData = function() {
+        movieService.getMovieData(vm.searchTerm).then(function(response) {
+          console.log("RESPONSE: ", response)
+          vm.dvds = response.onDvd;
+          vm.theater = response.inTheater;
+          vm.coming = response.comingSoon;
+          vm.noRelease = response.noReleaseDate;
+        });
+        vm.searchTerm = '';
+      }
+
 
     notificationService.add({
       title: "You've Made It To Skoot's View!!",
@@ -19,6 +27,6 @@
       type: notificationService.NOTIFICATION_TYPES.DANGER,
       pinned: false
     });
-  }     //end of SkootController
+  };     //end of SkootController
 
 })();

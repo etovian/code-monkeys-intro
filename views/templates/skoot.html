@@ -1,0 +1,45 @@
+<header> <h1> Where's My Movie?!?! </h1> </header>
+<div class="containter-fluid">
+  <div class="row">
+    <div class='movie-request'>
+      <form name="movie-request">
+        <input class='ask' type="text" ng-model='sm.searchTerm' placeholder='What are you searching for?!' />
+        <button class='askButton' ng-disabled='movie-request.$invalid' ng-click='sm.getMovieData()'> Ask!! </button>
+      </form>
+    </div>
+  </div>      <!-- end of movie-request -->
+    <hr />
+  <div class="movies-list">
+    <h2 ng-show="movies"> HERE ARE YOUR MOVIES </h2>
+    <div class="row">
+      <div class="col-xs-12">
+        <div ng-show="dvds">
+          <h2> On DVD or Blu-Ray </h2>
+          <div ng-repeat="dvd in dvds">
+            <div class="character-tile shadow">
+							<div class="row">
+								<div class="col-xs-12">
+									<a ng-href="#/disc/{{dvd.id}}" ng-model="title" class="truncate">{{ dvd.title }}</a>
+
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-12">
+									<img
+										ng-src="{{ dvd.posters.thumbnail }}"
+										class="img-thumbnail"
+										style="width:150px"/>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-12"></div>
+							</div>
+						</div>    <!-- end of character-tile shadow -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>    <!-- end of movies-list -->
+
+</div>    <!-- end of container-fluid -->

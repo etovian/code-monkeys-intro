@@ -18,6 +18,11 @@
 				controller: "MikeGreenController",
 				controllerAs: "mg"
 			})
+			.when("/skoot", {
+				templateUrl: templatePath + "skoot.html",
+				controller: "SkootController",
+				controllerAs: "sm"
+			})
 			.otherwise({
 				redirectTo: "/home"
 			});
