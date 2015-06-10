@@ -15,17 +15,19 @@
         vm.getBooksList = getBooksList();
         vm.books = [];
         vm.showForm = false;
-        vm.showUpdateForm = showUpdateForm;
+        vm.fillUpdateForm = fillUpdateForm;
         vm.editAuthorName;
         vm.editBookTitle;
+        vm.editBookCover
         vm.bookTitle;
         vm.authorName;
         vm.bookSelected;
         
-        function showUpdateForm(){
+        function fillUpdateForm(){
             console.log(vm.bookSelected);
             vm.editAuthorName = vm.bookSelected.author;
             vm.editBookTitle = vm.bookSelected.title;
+            vm.editBookCover = vm.bookSelected.cover;
         }
         
         function addBook(){

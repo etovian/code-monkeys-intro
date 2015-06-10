@@ -4,12 +4,19 @@
 			<h4>Book Lookup</h4>
 		</tab-heading>
 		<div class="container-fluid">
-                {{test}}
-            <div ng-repeat= "book in wg.books">
-                {{book.title}}
-                {{book.author}}
-                <div>
-                    <button class="btn btn-default" ng-click="deleteBook(book)">Delete</button>
+            <div class="row" ng-repeat= "book in wg.books">
+                <div class="col-md-12 col-sm-12">
+                    <hr/>
+                    <div class="col-md-12 col-sm-12">
+                        <div class="col-md-3 col-sm-3">
+                            <img class="thumbnail" ng-src="{{book.cover}}">
+                        </div>
+                        <div class="col-md-9 col-sm-9">
+                           <p>Title: {{book.title}} </p> 
+                           <p>Author: {{book.author}} </p>
+                            <button class="btn btn-default" ng-click="wg.deleteBook(book)">Delete</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 		</div>
@@ -21,6 +28,7 @@
 		<div>
             <h1>Add Book</h1>   
             <form ng-submit="wg.addBook()" class="form-group">
+                <img class="thumbnail" ng-src="{{wg.bookCover}}">
                 <input type="text" placeholder="Enter Title" class="form-control" ng-model="wg.bookTitle">
                 <input type="text" placeholder="Enter Author" class="form-control" ng-model="wg.authorName"/>
                 <button class="btn btn-default">Submit</button>
@@ -31,7 +39,7 @@
             <form>
                 <div>
                     <label for="bookSelect" >Select a Book to Edit</label>
-                    <select id="bookSelect" class="form-control" ng-model="wg.bookSelected" ng-options="book.title for book in wg.books" ng-change="wg.showUpdateForm()"></select>
+                    <select id="bookSelect" class="form-control" ng-model="wg.bookSelected" ng-options="book.title for book in wg.books" ng-change="wg.fillUpdateForm()"></select>
                 </div>
             </form>    
             <form ng-show="true" ng-submit="wg.updateBook()" class="form-group">
@@ -39,6 +47,7 @@
                 <input id="title" type="text" placeholder="Enter Title" class="form-control" ng-model="wg.editBookTitle">
                 <label for="author">Author</label>
                 <input id="author" type="text" placeholder="Enter Author" class="form-control" ng-model="wg.editAuthorName"/>
+                <img class="thumbnail" ng-src="{{wg.editBookCover}}">
                 <button class="btn btn-default">Submit</button>
             </form>	
 
