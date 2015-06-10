@@ -37,13 +37,22 @@ function MovieService($q, $http, $location, $log, notificationService) {
       var comingSoonArray = [];
       var noReleaseDate = [];
       var today = moment();
-        console.log("TODAY: ", today)
-        console.log("TODAY minus 365: ", today.subtract(365, 'days'))
+        // console.log("TODAY: ", today)
+        // console.log("TODAY minus 365: ", today.subtract(365, 'days'))
+
+          //WORKING ON IMPROVING THUMBNAIL QUALITY
+      // for(var i = 0; i < movieData.length; i++) {
+      //   console.log("POSTERS: ", movieData[i].posters)
+      //   var original = movieData[i].posters.original.replace(/^.*?\/[\d]+x[\d]+\//,"http://");
+      // }
+
       for(var i = 0; i < movieData.length; i++) {
         var releaseDate = movieData[i].release_dates;
+            // console.log("releaseDate: ", releaseDate.theater)
+            // console.log("MOMENT: ", moment(releaseDate.theater))
         if(!releaseDate.dvd && !releaseDate.theater) {
           noReleaseDate.push(movieData[i]);
-        } else if(releaseDate.dvd || releaseDate.theater > today.subtract(365, 'days')) {
+        } else if(releaseDate.dvd || moment(releaseDate.theater) < moment().subtract(365, 'days')) {
           onDvdArray.push(movieData[i]);
         } else {
           if(moment(releaseDate.theater) > today) {

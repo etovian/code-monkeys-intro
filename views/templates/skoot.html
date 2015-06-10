@@ -1,44 +1,127 @@
-<header> <h1> Where's My Movie?!?! </h1> </header>
+<header class='movies-header'> <h1> Where's My Movie?!?! </h1> </header>
 <div class="containter-fluid">
   <div class="row">
     <div class='movie-request'>
       <form name="movie-request">
-        <input class='ask' type="text" ng-model='sm.searchTerm' placeholder='What are you searching for?!' />
+        <input class='ask' type="text" ng-model='sm.searchTerm' placeholder='What ya looking for?!' />
         <button class='askButton' ng-disabled='movie-request.$invalid' ng-click='sm.getMovieData()'> Ask!! </button>
       </form>
     </div>
   </div>      <!-- end of movie-request -->
     <hr />
+
   <div class="movies-list">
-    <h2 ng-show="movies"> HERE ARE YOUR MOVIES </h2>
+        <div class="row">
+          <div class="col-xs-12">
+            <div ng-show="sm.theater">
+              <h3 class='movies-h3' > In Theaters </h3>
+              <div ng-repeat="movie in sm.theater">
+                <div class="movie-tile shadow">
+    							<div class="row">
+    								<div class="col-xs-12">
+      								<div ng-model="title" class="truncate movies-title"> {{ movie.title }}
+                      </div>
+    								</div>
+    							</div>
+    							<div class="row">
+    								<div class="col-xs-12">
+                      <a ng-href="#/movie/{{movie.id}}">
+                        <img ng-src="{{ movie.posters.thumbnail }}" class="img-thumbnail" style="width:150px"/>
+                      </a>
+    								</div>
+    							</div>
+    							<div class="row">
+    								<div class="col-xs-12"></div>
+    							</div>
+    						</div>    <!-- end of movie-tile shadow -->
+              </div>
+            </div>
+          </div>
+        </div>    <!-- end of In Theaters -->
+
     <div class="row">
       <div class="col-xs-12">
-        <div ng-show="dvds">
-          <h2> On DVD or Blu-Ray </h2>
-          <div ng-repeat="dvd in dvds">
-            <div class="character-tile shadow">
+        <div ng-show="sm.dvds">
+          <h3 class='movies-h3' > On DVD or Blu-Ray </h3>
+          <div ng-repeat="dvd in sm.dvds">
+            <div class="movie-tile shadow">
 							<div class="row">
 								<div class="col-xs-12">
-									<a ng-href="#/disc/{{dvd.id}}" ng-model="title" class="truncate">{{ dvd.title }}</a>
-
+									<div ng-model="title" class="truncate movies-title">{{ dvd.title }}
+                  </div>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-xs-12">
-									<img
-										ng-src="{{ dvd.posters.thumbnail }}"
-										class="img-thumbnail"
-										style="width:150px"/>
+									<a ng-href="#/disc/{{dvd.id}}">
+                    <img ng-src="{{ dvd.posters.detailed }}" class="img-thumbnail" style="width:150px"/>
+                  </a>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-xs-12"></div>
 							</div>
-						</div>    <!-- end of character-tile shadow -->
+						</div>    <!-- end of movie-tile shadow -->
           </div>
         </div>
       </div>
-    </div>
+    </div>    <!-- end of On DVD or Blu-Ray -->
+
+    <div class="row">
+      <div class="col-xs-12">
+        <div ng-show="sm.dvds">
+          <h3 class='movies-h3' > Coming to Theaters </h3>
+          <div ng-repeat="movie in sm.coming">
+            <div class="movie-tile shadow">
+							<div class="row">
+								<div class="col-xs-12">
+  								<div ng-model="title" class="truncate movies-title">{{ movie.title }}
+                  </div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-12">
+                  <a ng-href="#/movie/{{movie.id}}">
+                    <img ng-src="{{ movie.posters.thumbnail }}" class="img-thumbnail" style="width:150px"/>
+                  </a>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-12"></div>
+							</div>
+						</div>    <!-- end of movie-tile shadow -->
+          </div>
+        </div>
+      </div>
+    </div>    <!-- end of Coming Soon -->
+
+    <div class="row">
+      <div class="col-xs-12">
+        <div ng-show="sm.dvds">
+          <h3 class='movies-h3' > No Known Release Date </h3>
+          <div ng-repeat="movie in sm.noRelease">
+            <div class="movie-tile shadow">
+							<div class="row">
+								<div class="col-xs-12">
+									<div ng-model="title" class="truncate movies-title">{{ movie.title }}
+                  </div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-12">
+                  <a ng-href="#/movie/{{movie.id}}">
+                    <img ng-src="{{ movie.posters.thumbnail }}" class="img-thumbnail" style="width:150px"/>
+                  </a>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-12"></div>
+							</div>
+						</div>    <!-- end of movie-tile shadow -->
+          </div>
+        </div>
+      </div>
+    </div>    <!-- end of No Release Date -->
 
   </div>    <!-- end of movies-list -->
 
