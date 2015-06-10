@@ -5,7 +5,7 @@
 		</tab-heading>
 		<div class="container-fluid">
                 {{test}}
-            <div ng-repeat= "book in books">
+            <div ng-repeat= "book in wg.books">
                 {{book.title}}
                 {{book.author}}
                 <div>
@@ -23,9 +23,9 @@
 		</tab-heading>
 		<div>
             <h1>Add Book</h1>   
-            <form ng-submit="addBook()" class="form-group">
-                <input type="text" placeholder="Enter Title" class="form-control" ng-model="bookTitle">
-                <input type="text" placeholder="Enter Author" class="form-control" ng-model="authorName"/>
+            <form ng-submit="wg.addBook()" class="form-group">
+                <input type="text" placeholder="Enter Title" class="form-control" ng-model="wg.bookTitle">
+                <input type="text" placeholder="Enter Author" class="form-control" ng-model="wg.authorName"/>
                 <button class="btn btn-default">Submit</button>
             </form>	
         </div>
@@ -34,7 +34,7 @@
             <form>
                 <div>
                     <label for="booklist" >Select a Book to Edit</label>
-                    <select id="booklist" class="form-control" ng-model="bookList" ng-options="book.title for book in books" onchange="bookToEdit()"></select>
+                    <select id="booklist" class="form-control" ng-model="bookList" ng-options="book.title for book in wg.books" onchange="bookToEdit()"></select>
                 </div>
             </form>    
             <form ng-show="false" ng-submit="editBook()" class="form-group">
