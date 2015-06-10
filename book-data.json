@@ -1,0 +1,62 @@
+[
+    {
+        "title": "Pride and Prejudice",
+        "cover": "http://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Placeholder_book.svg/186px-Placeholder_book.svg.png",
+        "author":"Jane Austen"
+    },
+    {
+        "title": "The only book you will ever need",
+        "cover": "http://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Placeholder_book.svg/186px-Placeholder_book.svg.png",
+        "author":"Mr. know it all"
+    },
+    {
+        "title": "Swords Fencer",
+        "cover": "http://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Placeholder_book.svg/186px-Placeholder_book.svg.png",
+        "author":"A Saber Person"
+    },
+    {
+        "title": "Frankenstein",
+        "cover": "http://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Placeholder_book.svg/186px-Placeholder_book.svg.png",
+        "author":"Mary Shelly"
+    },
+    {
+        "title": "The Cook Book",
+        "cover": "http://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Placeholder_book.svg/186px-Placeholder_book.svg.png",
+        "author":"Someone"
+    },
+    {
+        "title": "The second book you will really ever need to read",
+        "cover": "http://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Placeholder_book.svg/186px-Placeholder_book.svg.png",
+        "author":"Mr. Know it all"
+    },
+    {
+        "title": "The Cat",
+        "cover": "http://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Placeholder_book.svg/186px-Placeholder_book.svg.png",
+        "author":"Bamboo"
+    },
+    {
+        "title": "The squirk",
+        "cover": "http://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Placeholder_book.svg/186px-Placeholder_book.svg.png",
+        "author":"Flower Power"
+    },
+    {
+        "title": "Flowers all around",
+        "cover": "http://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Placeholder_book.svg/186px-Placeholder_book.svg.png",
+        "author":"Chief of miss"
+    },
+    {
+        "title": "Dark Cover collapse",
+        "cover": "http://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Placeholder_book.svg/186px-Placeholder_book.svg.png",
+        "author":"Shasta"
+    },
+    {
+        "title": "Queen Cat Rules",
+        "cover": "http://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Placeholder_book.svg/186px-Placeholder_book.svg.png",
+        "author":"houseCat"
+    },
+    {
+        "title": "The Coffe Pot",
+        "cover": "http://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Placeholder_book.svg/186px-Placeholder_book.svg.png",
+        "author":"French P. Ress"
+    }
+]
