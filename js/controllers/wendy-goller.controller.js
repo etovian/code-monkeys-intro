@@ -13,18 +13,35 @@
         vm.addBook = addBook;
         vm.deleteBook = deleteBook;
         vm.getBooksList = getBooksList();
-        vm.newBook = {};
         vm.books = [];
+        vm.showForm = false;
+        vm.showUpdateForm = showUpdateForm;
+        vm.editAuthorName;
+        vm.editBookTitle;
+        vm.bookTitle;
+        vm.authorName;
+        vm.bookSelected;
+        
+        function showUpdateForm(){
+            console.log(vm.bookSelected);
+            vm.editAuthorName = vm.bookSelected.author;
+            vm.editBookTitle = vm.bookSelected.title;
+        }
         
         function addBook(){
+            var newBook = {};
             newBook.title = vm.bookTitle;
             newBook.authorName = vm.authorName;
             newBook.publishDate = vm.publishDate
-            bookService.addData(newBook);
+            bookService.setNewBook(newBook);
         }
     
         function deleteBook(selectedBook){
-            bookService.removeData(selectedBook);
+            bookService.deleteSelectBook(selectedBook);
+        }
+        
+        function updateBook(selectedBook){
+            bookService.updateSelectBook(selectedBook);
         }
 
         function getBooksList(){
@@ -33,6 +50,7 @@
                 vm.books = data.data;
             });
         }
+
 
     }
 })();

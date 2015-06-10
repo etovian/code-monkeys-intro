@@ -12,9 +12,6 @@
                     <button class="btn btn-default" ng-click="deleteBook(book)">Delete</button>
                 </div>
             </div>
-            <div ng-show="showFilter" >
-                <input type="text" placeholder="Enter Book Title" class="form-control" ng-model="filterText" ></textarea>
-            </div>
 		</div>
 	</tab>
 	<tab>
@@ -33,15 +30,15 @@
             <h1>Book to Edit</h1>                
             <form>
                 <div>
-                    <label for="booklist" >Select a Book to Edit</label>
-                    <select id="booklist" class="form-control" ng-model="bookList" ng-options="book.title for book in wg.books" onchange="bookToEdit()"></select>
+                    <label for="bookSelect" >Select a Book to Edit</label>
+                    <select id="bookSelect" class="form-control" ng-model="wg.bookSelected" ng-options="book.title for book in wg.books" ng-change="wg.showUpdateForm()"></select>
                 </div>
             </form>    
-            <form ng-show="false" ng-submit="editBook()" class="form-group">
+            <form ng-show="true" ng-submit="wg.updateBook()" class="form-group">
                 <label for="title">Title</label>
-                <input id="title" type="text" placeholder="Enter Title" class="form-control" ng-model="bookTitle">
+                <input id="title" type="text" placeholder="Enter Title" class="form-control" ng-model="wg.editBookTitle">
                 <label for="author">Author</label>
-                <input id="author" type="text" placeholder="Enter Author" class="form-control" ng-model="authorName"/>
+                <input id="author" type="text" placeholder="Enter Author" class="form-control" ng-model="wg.editAuthorName"/>
                 <button class="btn btn-default">Submit</button>
             </form>	
 
