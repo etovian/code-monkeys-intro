@@ -4,6 +4,7 @@
 		.module("app")
 		.controller("MikeGreenController", MikeGreenController);
 	
+	MikeGreenController.$inject = ['marvelService', 'notificationService', 'modalService', '$log'];
 	function MikeGreenController(marvelService, notificationService, modalService, $log) {
 
 		//TODO: remove this comment

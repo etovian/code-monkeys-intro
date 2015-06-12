@@ -4,6 +4,7 @@
 		.module("app")
 		.factory("marvelService", MarvelService);
 
+	MarvelService.$inject = ['$q', '$http', '$log', 'notificationService'];
 	function MarvelService($q, $http, $log, notificationService) {
 		
 		var MARVEL_URL = "http://gateway.marvel.com/v1/public/";
